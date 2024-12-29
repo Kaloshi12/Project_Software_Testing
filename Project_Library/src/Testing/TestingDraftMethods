@@ -1,0 +1,80 @@
+package Testing;
+
+public class TestingDraftMethods {
+
+
+    //A draft for the methods done in example 2, adding here for easy use later.
+
+
+    // @BeforeEach
+    //    void setup() {
+    //        view = new MockView();
+    //        controller = new AddLibrarian_Controller(view);
+    //    }
+    //
+    //
+    //
+    //  @Test
+    //    void testBoundaryValueSalary() {
+    //        view.setSalaryField("0.01");
+    //        assertTrue(controller.addManager());
+    //
+    //        view.setSalaryField("-0.01");
+    //        assertFalse(controller.addManager());
+    //
+    //        view.setSalaryField("1000000.00");
+    //        assertTrue(controller.addManager());
+    //
+    //        view.setSalaryField("1000000.01");
+    //        assertFalse(controller.addManager());
+    //    }
+    //
+    //
+    // @Test
+    //    void testClassEvaluationValidateInputs() {
+    //        view.setNameField("John");
+    //        view.setSurnameField("Doe");
+    //        assertTrue(controller.validateInputs());
+    //
+    //        view.setNameField("J");
+    //        view.setSurnameField("Doe");
+    //        assertFalse(controller.validateInputs());
+    //
+    //        view.setNameField("John");
+    //        view.setSurnameField("D");
+    //        assertFalse(controller.validateInputs());
+    //
+    //        view.setNameField("J");
+    //        view.setSurnameField("D");
+    //        assertFalse(controller.validateInputs());
+    //    }
+    //
+    //
+    //
+    // @Test
+    //void testNoBookSelected() {
+    //    mockView.setSelectedBook(null);
+    //    controller.deleteBook();
+    //    assertTrue(mockFile.getDatabase().isEmpty(), "No operations should occur if no book is selected.");
+    //}
+    //@Test
+    //void testDeleteBookQuantityZero() {
+    //    Book bookWithZeroQuantity = new Book("123456", "Test Book", "Author", 100, 0, "Fiction", 10.0, "Test description");
+    //    mockFile.addToDatabase(bookWithZeroQuantity);
+    //    mockView.setSelectedBook(bookWithZeroQuantity);
+    //    controller.deleteBook();
+    //
+    //    assertFalse(mockFile.getDatabase().contains(bookWithZeroQuantity), "Book with quantity 0 should be deleted.");
+    //}
+    //@Test
+    //void testDeleteBookWithQuantityGreaterThanZero() {
+    //    Book bookWithQuantity = new Book("654321", "Another Book", "Author2", 200, 2, "Non-fiction", 15.0, "Another description");
+    //    mockFile.addToDatabase(bookWithQuantity);
+    //    mockView.setSelectedBook(bookWithQuantity);
+    //    controller.deleteBook();
+    //    assertFalse(mockFile.getDatabase().contains(bookWithQuantity), "Original book should be deleted.");
+    //    assertEquals(1, mockFile.getDatabase().size(), "A new book with decremented quantity should be added.");
+    //    Book updatedBook = mockFile.getDatabase().get(0);
+    //    assertEquals(1, updatedBook.getQuantity(), "Updated book should have quantity decremented by 1.");
+    //}
+}
