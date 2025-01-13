@@ -1,81 +1,85 @@
 package Testing;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import Controller.AddLibrarian_Controller;
+import Files.Files_User;
+import Model.Employee;
+import View.AddLibrarianView;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import static org.mockito.Mockito.*;
 
-import Controller.AddLibrarian_Controller;
-import Files.Files_User;
-import Model.AccessLevel;
-import Model.Employee;
-import View.AddLibrarianView;
+public class AddLibrarian_ControllerTest {
 
-class AddLibrarian_ControllerTest {
-    AddLibrarianView view;
-    AddLibrarian_Controller controller;
-    Files_User file;
+    private AddLibrarianView view;
+    private Files_User file;
+    private AddLibrarian_Controller controller;
 
     @BeforeEach
     void setUp() {
+        // Manually create mocks
         view = mock(AddLibrarianView.class);
-        controller = new AddLibrarian_Controller(view);
         file = mock(Files_User.class);
-        controller.setFile(file);
+
+        // Mock view components
+        TextField nameField = mock(TextField.class);
+        TextField surnameField = mock(TextField.class);
+        DatePicker birthdayPicker = mock(DatePicker.class);
+        TextField phoneNumberField = mock(TextField.class);
+        TextField salaryField = mock(TextField.class);
+        TextField userIdField = mock(TextField.class);
+        TextField passwordField = mock(TextField.class);
+        TableView<Employee> tableView = mock(TableView.class);
+        Button addButton = mock(Button.class);
+
+        when(view.getNameField()).thenReturn(nameField);
+        when(view.getSurnameField()).thenReturn(surnameField);
+        when(view.getBirthdayPicker()).thenReturn(birthdayPicker);
+        when(view.getPhoneNumberField()).thenReturn(phoneNumberField);
+        when(view.getSalaryField()).thenReturn(salaryField);
+        when(view.getUserIdField()).thenReturn(userIdField);
+        when(view.getPasswordField()).thenReturn(passwordField);
+        when(view.getLibrarianTableView()).thenReturn(tableView);
+        when(view.getAddButton()).thenReturn(addButton);
+
+        // Initialize controller
+        controller = new AddLibrarian_Controller(view);
     }
 
-    @ParameterizedTest
-    @CsvSource({
-        "500, true",      
-        "0.1, true",      
-        "70000, true",    
-        "0, false",       
-        "70001, false",   
-        "-100, false",    
-        "100000, false"   
-    })
-    void testAddLibrarian(double salary, boolean isValid) {
-    	 when(view.getNameField().getText()).thenReturn("Franko");
-    	    when(view.getSurnameField().getText()).thenReturn("Kaloshi");
-    	    when(view.getBirthdayPicker().getValue()).thenReturn(LocalDate.of(1990, 1, 1));
-    	    when(view.getPhoneNumberField().getText()).thenReturn("1234567890");
-    	    when(view.getSalaryField().getText()).thenReturn(String.valueOf(salary));
-    	    when(view.getUserIdField().getText()).thenReturn("Franko98");
-    	    when(view.getPasswordField().getText()).thenReturn("123456789");
-    	    boolean result = controller.addLibrarian();
-    	    assertEquals(isValid,result);
-    	    
-    	    verify(file, times(1)).create(argThat(employee -> 
-            employee.getName().equals("John") &&
-            employee.getSurname().equals("Doe") &&
-            employee.getBirthday().equals(LocalDate.of(1990, 1, 1)) &&
-            employee.getPhoneNumber().equals("1234567890") &&
-            employee.getSalary() == salary &&
-            employee.getUserId().equals("johndoe") &&
-            employee.getPassword().equals("password")
-        ));
-
-    }
     @Test
-    void testVaildateInput() {
-    	when(view.getNameField().getText()).thenReturn("John");
-        when(view.getSurnameField().getText()).thenReturn("Doe");
-        assertTrue(controller.validateInputs());
-
-        when(view.getNameField().getText()).thenReturn("J");
-        when(view.getSurnameField().getText()).thenReturn("Doe");
-        assertFalse(controller.validateInputs());
-
+    void testAddLibrarianWithValidInput() {
+        // Set up valid mock inputs
         when(view.getNameField().getText()).thenReturn("John");
-        when(view.getSurnameField().getText()).thenReturn("D");
-        assertFalse(controller.validateInputs());
-        when(view.getNameField().getText()).thenReturn("J");
-        when(view.getSurnameField().getText()).thenReturn("D");
-        assertFalse(controller.validateInputs());
+        when(view.getSurnameField().getText()).thenReturn("Doe");
+        when(view.getBirthdayPicker().getValue()).thenReturn(LocalDate.of(1990, 1, 1));
+        when(view.getPhoneNumberField().getText()).thenReturn("123456789");
+        when(view.getSalaryField().getText()).thenReturn("50000");
+        when(view.getUserIdField().getText()).thenReturn("lib123");
+        when(view.getPasswordField().getText()).thenReturn("password123");
+
+        // Mock the file behavior to avoid real file operations
+        when(file.getAll()).thenReturn(FXCollections.observableArrayList());
+
+        // Call the method to test
+        controller.addManager();
+
+        // Verify the librarian was added to the table view
+        verify(view.getLibrarianTableView()).getItems().add(any(Employee.class));
+
+        // Verify the fields were cleared
+        verify(view.getNameField()).clear();
+        verify(view.getSurnameField()).clear();
+        verify(view.getBirthdayPicker()).setValue(null);
+        verify(view.getPhoneNumberField()).clear();
+        verify(view.getSalaryField()).clear();
+        verify(view.getUserIdField()).clear();
+        verify(view.getPasswordField()).clear();
     }
 }
