@@ -27,13 +27,11 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-  
-
-  
-
+    public Book(String text) {
+    }
 
 
-	public String getiSBN() {
+    public String getiSBN() {
 		return iSBN;
 	}
 

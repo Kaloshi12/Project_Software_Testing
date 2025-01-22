@@ -41,15 +41,22 @@ import javafx.stage.Stage;
 	        setVgap(10);
 	        
 	        nameField = new TextField();
+			nameField.setId("nameLibrarian");
 	        surnameField = new TextField();
-	        birthdayPicker = new DatePicker();  
+			surnameField.setId("surnameLibrarian");
+	        birthdayPicker = new DatePicker();
+			birthdayPicker.setId("birthdayLibrarian");
 	        phoneNumberField = new TextField();
+			phoneNumberField.setId("phoneLibrarian");
 	        salaryField = new TextField();
+			salaryField.setId("salaryLibrarian");
 	        userIdField = new TextField();
+			userIdField.setId("userIdLibrarian");
 	        passwordField = new TextField();
+			passwordField.setId("passLibrarian");
 
-	        addButton = new Button("Add Manager");
-
+	        addButton = new Button("Add Librarian");
+			addButton.setId("addLibrarian");
 	        messageText = new Text();
 	        messageText.setStyle("-fx-fill: red;");
 

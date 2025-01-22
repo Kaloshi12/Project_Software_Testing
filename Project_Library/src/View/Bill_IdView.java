@@ -26,8 +26,9 @@ public class Bill_IdView extends BorderPane {
         }
 
         billIdListView = new ListView<>(billIds);
-
+        billIdListView.setId("billList");
         showDetailsButton = new Button("Show Bill");
+        showDetailsButton.setId("detailsBill");
         showDetailsButton.setPrefWidth(80);
         showDetailsButton.setPrefHeight(40);
 

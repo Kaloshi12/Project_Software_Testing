@@ -34,15 +34,24 @@ public class AddManagerView extends GridPane {
         setVgap(10);
 
         nameField = new TextField();
+        nameField.setId("nameManager");
         surnameField = new TextField();
-        birthdayPicker = new DatePicker();  
+        surnameField.setId("surnameManager");
+        birthdayPicker = new DatePicker();
+        birthdayPicker.setId("birthdayManager");
         phoneNumberField = new TextField();
+        phoneNumberField.setId("phoneManager");
         salaryField = new TextField();
+        salaryField.setId("salaryManager");
         userIdField = new TextField();
+        userIdField.setId("userIdManager");
         passwordField = new TextField();
+        passwordField.setId("passManager");
 
         addButton = new Button("Add Manager");
+        addButton.setId("addManager");
         delete = new Button("Delete");
+        delete.setId("deleteManager");
         messageText = new Text();
         messageText.setStyle("-fx-fill: red;");
 

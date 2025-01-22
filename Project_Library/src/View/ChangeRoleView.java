@@ -46,15 +46,17 @@ public void setLastNameTextField(TextField lastNameTextField) {
 
         // Labels and TextFields
         Label firstNameLabel = new Label("First Name:");
+        firstNameLabel.setId("firstname");
         firstNameTextField = new TextField();
 
         Label lastNameLabel = new Label("Last Name:");
         lastNameTextField = new TextField();
+        lastNameTextField.setId("lastname");
 
         // MenuButton for Access Level
         Label accessLevelLabel = new Label("Access Level:");
         accessLevelMenuButton = new MenuButton("Select Access Level");
-
+        accessLevelMenuButton.setId("accLevelBtn");
         for (AccessLevel level : AccessLevel.values()) {
             MenuItem menuItem = new MenuItem(level.toString());
             menuItem.setOnAction(e -> accessLevelMenuButton.setText(menuItem.getText()));
@@ -63,6 +65,7 @@ public void setLastNameTextField(TextField lastNameTextField) {
 
         
         submitButton = new Button("Submit");
+        submitButton.setId("submit");
        
         
         this.add(firstNameLabel, 0, 0);

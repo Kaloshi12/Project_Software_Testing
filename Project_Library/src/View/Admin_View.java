@@ -85,6 +85,7 @@ public class Admin_View extends Pane {
 			delete.setOnMouseEntered(e -> delete.setStyle("-fx-background-color: lightblue;"));
 			delete.setOnMouseExited(e -> delete.setStyle(null));
 			register_Manager = new Button("Manager");
+			register_Manager.setId("addManager");
 			register_Manager.setLayoutX(150);
 			register_Manager.setLayoutY(200);
 			register_Manager.setPrefWidth(120);
@@ -92,6 +93,7 @@ public class Admin_View extends Pane {
 			register_Manager.setOnMouseEntered(e -> register_Manager.setStyle("-fx-background-color: lightblue;"));
 			register_Manager.setOnMouseExited(e -> register_Manager.setStyle(null));
 			regiser_Librarian = new Button("Librarian");
+			regiser_Librarian.setId("manageLibrarian");
 			regiser_Librarian.setLayoutX(310);
 			regiser_Librarian.setLayoutY(200);
 			regiser_Librarian.setPrefWidth(120);
@@ -99,6 +101,7 @@ public class Admin_View extends Pane {
 			regiser_Librarian.setOnMouseEntered(e -> regiser_Librarian.setStyle("-fx-background-color: lightblue;"));
 			regiser_Librarian.setOnMouseExited(e -> regiser_Librarian.setStyle(null));
 			check_Librarian = new Button("Controll");
+			check_Librarian.setId("bill");
 			check_Librarian.setLayoutX(310);
 			check_Librarian.setLayoutY(300);
 			check_Librarian.setPrefWidth(120);
@@ -109,6 +112,7 @@ public class Admin_View extends Pane {
 			Permission.setLayoutX(150);
 			Permission.setLayoutY(300);
 			Permission.setPrefWidth(120);
+			Permission.setId("permission");
 			Permission.setPrefHeight(60);
 			Permission.setOnMouseEntered(e -> Permission.setStyle("-fx-background-color: lightblue;"));
 			Permission.setOnMouseExited(e -> Permission.setStyle(null));
