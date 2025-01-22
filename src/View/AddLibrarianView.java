@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-	public class AddLibrarianView extends Parent {
+	public class AddLibrarianView extends GridPane{
 	    private TextField nameField;
 	    private TextField surnameField;
 	    private DatePicker birthdayPicker;
@@ -36,7 +36,9 @@ import javafx.stage.Stage;
 
 		public AddLibrarianView() {
 			stage = new Stage();
-
+		    setPadding(new Insets(10));
+	        setHgap(10);
+	        setVgap(10);
 	        
 	        nameField = new TextField();
 	        surnameField = new TextField();
@@ -53,9 +55,28 @@ import javafx.stage.Stage;
 
 	        librarianTableView = createLibrarianTableView();
 
-	       
-		}
+	        add(new Label("Name:"), 0, 0);
+	        add(nameField, 1, 0);
+	        add(new Label("Surname:"), 0, 1);
+	        add(surnameField, 1, 1);
+	        add(new Label("Birthday:"), 0, 2);
+	        add(birthdayPicker, 1, 2);
+	        add(new Label("Phone Number:"), 0, 3);
+	        add(phoneNumberField, 1, 3);
+	        add(new Label("Salary:"), 0, 4);
+	        add(salaryField, 1, 4);
+	        add(new Label("User ID:"), 0, 5);
+	        add(userIdField, 1, 5);
+	        add(new Label("Password:"), 0, 6);
+	        add(passwordField, 1, 6);
+	        add(addButton, 0, 7, 2, 1);
+	        add(messageText, 0, 8, 2, 1);
+	        add(librarianTableView, 2, 0, 1, 9);
+	        setColumnSpan(librarianTableView, 2);
+	    }
 
+	       
+		
 
 
 

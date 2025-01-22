@@ -12,7 +12,7 @@ import Model.Employee;
 
 public class Files_User {
 
-    public static final String FILE_PATH = "src/BinaryFiles/User.dat";
+    public static  String FILE_PATH = "src/BinaryFiles/User.dat";
     private static final File DATA_FILE = new File(FILE_PATH);
     private ObservableList<Employee> listEmployees = FXCollections.observableArrayList();
 
@@ -42,16 +42,21 @@ public class Files_User {
         return listEmployees;
     }
 
-    public List<Employee> loadEmployeesFromFile() {
-        List<Employee> employees = new ArrayList<>();
-        File file = new File("employees.dat");
+    public ObservableList<Employee> loadEmployeesFromFile() {
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        File file = new File(Files_User.FILE_PATH); // Ensure this points to the correct file
         if (!file.exists() || file.length() == 0) {
             // Return an empty list if the file doesn't exist or is empty
             return employees;
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            employees = (List<Employee>) ois.readObject();
+            Object readObject = ois.readObject();
+            if (readObject instanceof ObservableList) {
+                employees = (ObservableList<Employee>) readObject;
+            } else {
+                System.out.println("Unexpected object type in file: " + readObject.getClass());
+            }
         } catch (EOFException e) {
             // Handle end-of-file exception gracefully
             System.out.println("File is empty or corrupted: " + e.getMessage());
@@ -60,6 +65,7 @@ public class Files_User {
         }
         return employees;
     }
+
 
 
     public boolean create(Employee employee) {
@@ -103,12 +109,14 @@ public class Files_User {
             try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file))) {
                 for (Employee employee : employees) {
                     outputStream.writeObject(employee);
+                    System.out.println("Writing employee: " + employee.getUserId()); // Add logging
                 }
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
         }
     }
+
 
     public boolean delete(Employee employee) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {

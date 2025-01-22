@@ -7,9 +7,10 @@ import Model.Genres;
 import View.AddBookView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class ButtonAdd_Controller {
-    private  AddBookView view = new AddBookView();
+    private  AddBookView view = new AddBookView(new Stage());
     private final Files_Book file;
 
     public ButtonAdd_Controller(AddBookView view) {

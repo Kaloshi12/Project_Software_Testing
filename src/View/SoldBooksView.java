@@ -12,7 +12,7 @@ import java.util.Map;
 import Files.FilesSoldBook;
 import Model.Book;
 
-public class SoldBooksView extends BorderPane {
+public abstract class SoldBooksView extends BorderPane {
     private Stage stage;
     private FilesSoldBook file;
     private ListView<String> soldBooksListView;
@@ -44,4 +44,6 @@ public class SoldBooksView extends BorderPane {
         stage.setScene(scene);
         stage.show();
     }
+
+    protected abstract FilesSoldBook createFilesSoldBook();
 }

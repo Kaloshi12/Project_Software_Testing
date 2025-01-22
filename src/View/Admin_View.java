@@ -30,14 +30,15 @@ public class Admin_View extends Pane {
 	private Button Permission;
 	private Stage Astage;
 	private Files_Book file = new Files_Book();
+	private BookListView books = new BookListView();
 	private Button logOut;
 
-		 public Admin_View(){
-			 
+		 public Admin_View(Stage stage){
+
 			Astage = new Stage();
 			Astage.setTitle("Administrator");
 			Astage.setOnShown(e -> {
-		        Message(); 
+		        Message();
 		    });
 			text = new Text();
 			text.setText("Welcome Admin");
@@ -51,6 +52,7 @@ public class Admin_View extends Pane {
 			register.setFont(Font.font("Arial",FontWeight.BOLD,50));
 			addBooks = new Button();
 			addBooks.setText("Add Book");
+			addBooks.setId("addBookA");
 			addBooks.setLayoutX(20);
 			addBooks.setLayoutY(400);
 			addBooks.setPrefWidth(120);
@@ -59,6 +61,7 @@ public class Admin_View extends Pane {
 	        addBooks.setOnMouseExited(e -> addBooks.setStyle(null));
 			showBooks = new Button();
 	        showBooks.setText("Books");
+			showBooks.setId("showBooks");
 			showBooks.setLayoutX(160);
 			showBooks.setLayoutY(400);
 			showBooks.setPrefWidth(120);
@@ -117,10 +120,10 @@ public class Admin_View extends Pane {
 			logOut.setOnMouseEntered(e -> logOut.setStyle("-fx-background-color: lightblue;"));
 			logOut.setOnMouseExited(e -> logOut.setStyle(null));
 			getChildren().addAll(text,register,addBooks,showBooks,showSoldBooks,delete,register_Manager,regiser_Librarian,check_Librarian,Permission,logOut);
-			
+
 		}
-		 
-		 
+
+
 		public Files_Book getFile() {
 			return file;
 		}
@@ -153,7 +156,7 @@ public class Admin_View extends Pane {
 			if (!lowQuantityBooks.isEmpty()) {
 			    showAlert("Low Quantity Warning", getBookInfo(lowQuantityBooks));
 			}
-			
+
 		}
 
 

@@ -33,12 +33,15 @@ public class AddBookView {
     private VBox root;
     private Files_Book file;
     
-    public AddBookView() {
+    public AddBookView(Stage stage) {
+        this.stage = stage;
         Merge();
     }
 
     private void Merge() {
-        stage = new Stage();
+        if(this.stage==null){
+            this.stage = new Stage();
+        }
         stage.setTitle("Add Books");
         setFile(new Files_Book());
    
@@ -60,6 +63,7 @@ public class AddBookView {
 
         Label genreLabel = new Label("Genre:");
         genreMenuButton = new MenuButton("Select Genre");
+        genreMenuButton.setId("genre");
         ObservableList<MenuItem> genreItems = FXCollections.observableArrayList();
         for (Genres genre : Genres.values()) {
             MenuItem genreItem = new MenuItem(genre.toString().replace("_", " "));
@@ -69,14 +73,32 @@ public class AddBookView {
         genreMenuButton.getItems().addAll(genreItems);
 
         isbnField = new TextField();
+        isbnField.setId("isbnField");
+
         titleField = new TextField();
+        titleField.setId("titleField");
+
         authorFirstNameField = new TextField();
+        authorFirstNameField.setId("authorFirstNameField");
+
         authorLastNameField = new TextField();
+        authorLastNameField.setId("authorLastNameField");
+
         pagesField = new TextField();
+        pagesField.setId("pagesField");
+
         quantityField = new TextField();
+        quantityField.setId("quantityField");
+
         priceField = new TextField();
+        priceField.setId("priceField");
+
         descriptionField = new TextField();
+        descriptionField.setId("descriptionField");
+
         addBookButton = new Button("Add Book");
+        addBookButton.setId("addBookButton");
+
 
         addBookPane.add(new Label("ISBN:"), 0, 0);
         addBookPane.add(isbnField, 1, 0);

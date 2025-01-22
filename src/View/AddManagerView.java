@@ -26,8 +26,8 @@ public class AddManagerView extends GridPane {
     private Stage stage;
     private TableView<Employee> managerTableView;
 
-    public AddManagerView() {
-        stage = new Stage();
+    public AddManagerView(Stage stage) {
+        this.stage = stage;
 
         setPadding(new Insets(10));
         setHgap(10);

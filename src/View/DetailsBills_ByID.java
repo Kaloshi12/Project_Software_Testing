@@ -17,6 +17,7 @@ public class DetailsBills_ByID {
     private Label dateLabel;
     private Label titleLabel;
     private Label priceLabel;
+    private Label descriptionLabel;
     private HBox bookDetailsHBox;
     private Label idLabel;
     private Stage stage;
@@ -30,7 +31,8 @@ public class DetailsBills_ByID {
             bookDetailsHBox = new HBox(10);
             titleLabel = new Label("Title: " + book.getTitle());
             priceLabel = new Label("Price: " + String.format("%.2f", book.getPrice()));
-            bookDetailsHBox.getChildren().addAll(titleLabel, priceLabel);
+            descriptionLabel = new Label("Description: " + book.getDescription()); // Added description
+            bookDetailsHBox.getChildren().addAll(titleLabel, priceLabel, descriptionLabel);
             bookDetailsVBox.getChildren().add(bookDetailsHBox);
         }
 

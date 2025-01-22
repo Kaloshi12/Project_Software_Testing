@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.List;
 
 public class BillFile {
-    public static final String FILE_PATH = "src/BinaryFiles/Bills.dat";
+    public static  String FILE_PATH = "src/BinaryFiles/Bills.dat";
     private static final File DATA_FILE = new File(FILE_PATH);
     private final ObservableList<Bill> listOfBills;
 
