@@ -13,13 +13,13 @@ public class ChangeRole_Controller {
     private ChangeRoleView view;
     private Files_User file;
 
-    public ChangeRole_Controller(ChangeRoleView view) {
+    public ChangeRole_Controller(ChangeRoleView view,Files_User file) {
         this.view = view;
-        file = new Files_User();
+        this.file = file;
         view.getSubmitButton().setOnAction(e -> changeRole());
     }
 
-    private void changeRole() {
+    public Employee changeRole() {
         String pickedFirstName = view.getFirstNameTextField().getText();
         String pickedLastName = view.getLastNameTextField().getText();
         AccessLevel pickedLevel = getAccessFromText(view.getAccessLevelMenuButton().getText());
@@ -32,9 +32,10 @@ public class ChangeRole_Controller {
                 Employee newUser = new Employee(user.getName(), user.getSurname(), user.getBirthday(), user.getPhoneNumber(), user.getSalary(), pickedLevel, user.getUserId(), user.getPassword());
                 file.create(newUser);
                 // Break the loop once a match is found, assuming there's only one matching user
-                break;
+                return newUser;
             }
         }
+        return null;
     }
 
 

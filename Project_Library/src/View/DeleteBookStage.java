@@ -1,15 +1,18 @@
 package View;
 
 import Controller.DeleteBook_Controller;
+import Files.Files_Book;
 import javafx.scene.Scene;
 
 public class DeleteBookStage extends OpenStage {
     private DeleteBooks view;
+    private Files_Book file = new Files_Book();
     private DeleteBook_Controller ctrl;
 
     public DeleteBookStage() {
         view = new DeleteBooks();
-        ctrl = new DeleteBook_Controller(view);
+
+        ctrl = new DeleteBook_Controller(view,file);
     }
 
     @Override

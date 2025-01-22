@@ -1,12 +1,15 @@
 package View;
 
 import Controller.AddManagerController;
+import Files.Files_User;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class AddManager_Stage extends OpenStage{
-private AddManagerView view = new AddManagerView();
-private AddManagerController  ctrl = new AddManagerController (view);
-//private DeleteMenager ctrl1 = new DeleteMenager(view); 
+private AddManagerView view = new AddManagerView(new Stage());
+private Files_User file =  new Files_User();
+private AddManagerController  ctrl = new AddManagerController (view,file);
+
 @Override
 public void open() {
 	Scene scene = new Scene(view,800,500);

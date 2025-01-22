@@ -36,7 +36,7 @@ public class SellBook_Controller {
         });
     }
 
-    private void decrementQuantity(ObservableList<Book> selectedBooks) {
+    public void decrementQuantity(ObservableList<Book> selectedBooks) {
 
         for (Book selectedBook : selectedBooks) {
         	int cnt = getQuantityFromTextField(selectedBook);
@@ -57,7 +57,7 @@ public class SellBook_Controller {
 		}
     }
 
-    private void handleBuyButton(ObservableList<Book> selectedBooks) {
+    public void handleBuyButton(ObservableList<Book> selectedBooks) {
         checkQuantity(); // Check if selected quantity is larger than book quantity
 
         for (Book book : selectedBooks) {
@@ -85,7 +85,7 @@ public class SellBook_Controller {
         }
     }
 
-    private double calculateTotalPrice(ObservableList<Book> selectedBooks) {
+    public double calculateTotalPrice(ObservableList<Book> selectedBooks) {
         double totalPrice = 0.0;
         for (Book book : selectedBooks) {
             int quantity = getQuantityFromTextField(book);
@@ -104,7 +104,7 @@ public class SellBook_Controller {
         
         
     }
-    private boolean checkQuantity() {
+    public boolean checkQuantity() {
         for (Book book : selectedBooks) {
             int quantity = getQuantityFromTextField(book);
             if (quantity > book.getQuantity()) {

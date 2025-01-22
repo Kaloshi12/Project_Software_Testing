@@ -20,16 +20,17 @@ public class AddManagerController {
     LocalDate date;
     private ObservableList<Employee> managerList = FXCollections.observableArrayList();
 
-    public AddManagerController(AddManagerView view) {
+    public AddManagerController(AddManagerView view,Files_User file) {
         this.view = view;
-        this.file = new Files_User();
+        this.file = file;
         initializeManagerList();
         setupButtonAction();
     }
 
-    private void initializeManagerList() {
+
+    public void initializeManagerList() {
         AccessLevel level = AccessLevel.MANAGER;
-        managerList.addAll(file.getAll().filtered(user -> level.equals(user.getLevel())));
+
         view.getManagerTableView().setItems(managerList);
     }
 
@@ -37,9 +38,9 @@ public class AddManagerController {
         view.getAddButton().setOnAction(e -> addManager());
     }
 
-    public void addManager() {
+    public boolean addManager() {
         if (!validateInputs()) {
-            return;
+            return false;
         }
 
         String name = view.getNameField().getText().trim();
@@ -52,7 +53,7 @@ public class AddManagerController {
             salary = Double.parseDouble(view.getSalaryField().getText().trim());
         } catch (NumberFormatException e) {
             showWrongAlert("Error", "Invalid salary format. Please enter a valid number.");
-            return;
+            return false;
         }
 
         String userId = view.getUserIdField().getText().trim();
@@ -60,11 +61,11 @@ public class AddManagerController {
         for (Employee existingUser : managerList) {
             if (existingUser.getName().equalsIgnoreCase(name) && existingUser.getSurname().equalsIgnoreCase(surname)) {
                 showWrongAlert("Error", "Manager with the same name and surname already exists. Please choose a different one.");
-                return;
+                return false;
             }
             if (existingUser.getUserId().equalsIgnoreCase(userId)) {
                 showWrongAlert("Error", "User ID already exists. Please choose a different one.");
-                return;
+                return false;
             }
         }
 
@@ -75,21 +76,22 @@ public class AddManagerController {
             file.create(manager);
             System.out.println("Manager saved");
         }
-  
+
 
         managerList.add(manager);
         view.getManagerTableView().getItems().add(manager);
         clearFields();
+        return true;
     }
 
     private boolean validateInputs() {
         // Validate name and surname inputs
-        if (!validInput(view.getNameField().getText().trim(), "Name") || 
-            !validInput(view.getSurnameField().getText().trim(), "Surname")) {
+        if (!validInput(view.getNameField().getText().trim(), "Name") ||
+                !validInput(view.getSurnameField().getText().trim(), "Surname")) {
             return false;
         }
 
-       
+
 
         return true;
     }
@@ -120,5 +122,8 @@ public class AddManagerController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setFile(Files_User mockFile) {
     }
 }

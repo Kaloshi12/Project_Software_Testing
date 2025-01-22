@@ -41,6 +41,7 @@ public class SellBookView extends BorderPane {
                             book.getTitle(), book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName(), 
                             book.getPages(), book.getQuantity(), book.getPrice()));
                     quantityField.setPromptText("Qty");
+                    quantityField.setId("quantity");
                     quantityField.setPrefWidth(50); // Set the width of the text field
 
                     HBox hbox = new HBox(bookDetails, quantityField);
@@ -53,6 +54,7 @@ public class SellBookView extends BorderPane {
         });
 
         list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        list.setId("listBook");
 
         FlowPane pane = new FlowPane();
         pane.getChildren().add(text);
@@ -60,6 +62,7 @@ public class SellBookView extends BorderPane {
 
         HBox hbox = new HBox();
         buyButton = new Button("Buy");
+        buyButton.setId("buyButton");
         buyButton.setPrefWidth(120);
         buyButton.setPrefHeight(50);
 

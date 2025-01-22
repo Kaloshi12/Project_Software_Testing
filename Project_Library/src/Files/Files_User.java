@@ -3,6 +3,7 @@ package Files;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ import Model.Employee;
 
 public class Files_User {
 
-    public static final String FILE_PATH = "src/BinaryFiles/User.dat";
+    public static  String FILE_PATH = "Project_Library/src/BinaryFiles/User.dat";
     private static final File DATA_FILE = new File(FILE_PATH);
     private ObservableList<Employee> listEmployees = FXCollections.observableArrayList();
 
@@ -42,30 +43,53 @@ public class Files_User {
     }
 
     public ObservableList<Employee> loadEmployeesFromFile() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(DATA_FILE))) {
-            System.out.println("Reading employees from file...");
-
-            while (true) {
-                try {
-                    Employee employee = (Employee) inputStream.readObject();
-                    System.out.println(employee);
-                    listEmployees.add(employee);
-                } catch (EOFException e) {
-                    break; // End of file reached
-                }
-            }
-            System.out.println("Reading complete.");
-        } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        File file = new File(Files_User.FILE_PATH); // Ensure this points to the correct file
+        if (!file.exists() || file.length() == 0) {
+            // Return an empty list if the file doesn't exist or is empty
+            return employees;
         }
-        return listEmployees;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            Object readObject = ois.readObject();
+            if (readObject instanceof ObservableList) {
+                employees = (ObservableList<Employee>) readObject;
+            } else {
+                System.out.println("Unexpected object type in file: " + readObject.getClass());
+            }
+        } catch (EOFException e) {
+            // Handle end-of-file exception gracefully
+            System.out.println("File is empty or corrupted: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employees;
     }
 
+
+
     public boolean create(Employee employee) {
+        // Ensure the directory exists before writing the file
+        File directory = new File("src/BinaryFiles");
+        if (!directory.exists()) {
+            directory.mkdirs();  // Create the directory if it doesn't exist
+        }
+
+        // Ensure the file exists before writing to it
+        File file = new File(Files_User.FILE_PATH);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();  // Create the file if it doesn't exist
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE, true))) {
+            System.out.println("Creating employee: " + employee.getUserId());
             outputStream.writeObject(employee);
             listEmployees.add(employee);
-            updateAll();
+            updateAll();  // Ensure the list is updated after adding the employee
             return true;
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -85,6 +109,7 @@ public class Files_User {
             try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file))) {
                 for (Employee employee : employees) {
                     outputStream.writeObject(employee);
+                    System.out.println("Writing employee: " + employee.getUserId()); // Add logging
                 }
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -92,11 +117,13 @@ public class Files_User {
         }
     }
 
+
     public boolean delete(Employee employee) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
             for (Employee e : listEmployees) {
-                if (!e.equals(employee))
+                if (!e.equals(employee)) {
                     outputStream.writeObject(e);
+                }
             }
             listEmployees.remove(employee);
             return true;
@@ -109,8 +136,9 @@ public class Files_User {
     public boolean deleteAll(List<Employee> employeesToRemove) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
             for (Employee e : listEmployees) {
-                if (!employeesToRemove.contains(e))
+                if (!employeesToRemove.contains(e)) {
                     outputStream.writeObject(e);
+                }
             }
             listEmployees.removeAll(employeesToRemove);
             return true;
@@ -135,5 +163,4 @@ public class Files_User {
     public void setEmployeeList(ObservableList<Employee> employeeList) {
         this.listEmployees = employeeList;
     }
-
 }

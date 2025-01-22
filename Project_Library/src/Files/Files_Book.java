@@ -11,7 +11,7 @@ import Model.Genres;
 
 public class Files_Book {
 
-    public static final String FILE_PATH = "src/BinaryFiles/Book.dat";
+    public static final String FILE_PATH = "Project_Library/src/BinaryFiles/Book.dat";
     private static final File DATA_FILE = new File(FILE_PATH);
     private ObservableList<Book> listbook = FXCollections.observableArrayList();
 

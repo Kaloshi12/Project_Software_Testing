@@ -45,6 +45,7 @@ public class MenuLibrarianView extends Pane {
 			showBooks.setOnMouseExited(e -> showBooks.setStyle(null));
 			sellBook = new Button();
 			sellBook.setText("Sell Books");
+			sellBook.setId("sellBook");
 			sellBook.setLayoutX(300);
 			sellBook.setLayoutY(400);
 			sellBook.setPrefWidth(120);

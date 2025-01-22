@@ -11,10 +11,11 @@ import View.LoginView;
 import View.StageAddBook;
 
 import javafx.application.Platform;
+import javafx.stage.Stage;
 
 public class Admin_View_Controller {
-    private Admin_View view = new Admin_View();
-    private BookListView stage = new BookListView();
+    private Admin_View view = new Admin_View(new Stage());
+    private BookListView books = new BookListView();
     private StageAddBook addBook = new StageAddBook();
     private AddManager_Stage addManager = new AddManager_Stage();
     private DeleteBookStage deleteStage = new DeleteBookStage();
@@ -23,7 +24,7 @@ public class Admin_View_Controller {
     private ChangeRoleStage role = new ChangeRoleStage();
 
     public Admin_View_Controller(Admin_View view) {
-        view.getShowBooks().setOnAction(e -> stage.open());
+        view.getShowBooks().setOnAction(e -> books.open());
         view.getAddBooks().setOnAction(e -> addBook.open());
         view.getRegister_Manager().setOnAction(e -> addManager.open());
         view.getDelete().setOnAction(e -> deleteStage.open());
@@ -33,11 +34,11 @@ public class Admin_View_Controller {
     }
 
     public BookListView getStage() {
-        return stage;
+        return books;
     }
 
-    public void setStage(BookListView stage) {
-        this.stage = stage;
+    public void setStage(BookListView books) {
+        this.books = books;
     }
 
     public StageAddBook getAddBook() {
@@ -64,5 +65,5 @@ public class Admin_View_Controller {
         this.view = view;
     }
 
-    
+
 }

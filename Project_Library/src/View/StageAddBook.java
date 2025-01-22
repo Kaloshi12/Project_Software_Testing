@@ -3,9 +3,10 @@ package View;
 import Controller.Admin_View_Controller;
 import Controller.ButtonAdd_Controller;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class StageAddBook extends OpenStage {
-    private AddBookView add = new AddBookView();
+    private AddBookView add = new AddBookView(new Stage());
     private ButtonAdd_Controller ctrl = new ButtonAdd_Controller(add);
 
     public AddBookView getAdd() {

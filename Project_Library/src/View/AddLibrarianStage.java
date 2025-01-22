@@ -2,11 +2,13 @@ package View;
 
 import Controller.AddLibrarian_Controller;
 
+import Files.Files_User;
 import javafx.scene.Scene;
 
 public class AddLibrarianStage extends OpenStage {
 private AddLibrarianView view = new AddLibrarianView();
-private AddLibrarian_Controller ctrl = new AddLibrarian_Controller(view);
+private Files_User file = new Files_User();
+private AddLibrarian_Controller ctrl = new AddLibrarian_Controller(view,file);
 
 @Override
 public void open() {

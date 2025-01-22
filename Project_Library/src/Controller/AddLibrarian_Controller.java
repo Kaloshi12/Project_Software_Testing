@@ -15,9 +15,9 @@ public class AddLibrarian_Controller {
     private  AddLibrarianView view = new AddLibrarianView();
     private Files_User file;
     private ObservableList<Employee> libList = FXCollections.observableArrayList();
-    public AddLibrarian_Controller(AddLibrarianView view) {
+    public AddLibrarian_Controller(AddLibrarianView view,Files_User file) {
         this.view = view;
-        file = new Files_User();
+        this.file = file;
         AccessLevel level = AccessLevel.LIBRARIAN;
         for(Employee user : file.getAll()) {
         	AccessLevel userLevel = user.getLevel();
@@ -29,9 +29,9 @@ public class AddLibrarian_Controller {
         view.getAddButton().setOnAction(e -> addManager());
     }
 
-    public void addManager() {
+    public boolean addManager() {
     	if (!validateInputs()) {
-            return;
+            return false;
         }
         String name = view.getNameField().getText();
         String surname = view.getSurnameField().getText();
@@ -43,7 +43,7 @@ public class AddLibrarian_Controller {
             salary = Double.parseDouble(view.getSalaryField().getText());
         } catch (NumberFormatException e) {
             showWrongAlert("Error", "Invalid salary format. Please enter a valid number.");
-            return;
+            return false;
         }
 
         String userId = view.getUserIdField().getText();
@@ -52,11 +52,11 @@ public class AddLibrarian_Controller {
         for (Employee existingUser: libList) {
             if (existingUser.getName().equals(name) && existingUser.getSurname().equals(surname)) {
                 showWrongAlert("Error", "Manager with the same name and surname already exists. Please choose a different one.");
-                return;
+                return false;
             }
             if (existingUser.getUserId().equals(userId)) {
                 showWrongAlert("Error", "User ID already exists. Please choose a different one.");
-                return;
+                return false;
             }
         }
 
@@ -74,6 +74,7 @@ public class AddLibrarian_Controller {
         
 
         clearFields();
+        return true;
 
     }
 
@@ -121,5 +122,9 @@ public class AddLibrarian_Controller {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setFile(Files_User file) {
+        this.file = file;
     }
 }

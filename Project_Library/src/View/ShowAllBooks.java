@@ -16,7 +16,7 @@ import javafx.collections.FXCollections;
 	import javafx.stage.Stage;
 
 	public class ShowAllBooks extends  BorderPane {
-	    private Stage stageBook;
+	    public Stage stageBook;
 	    private ListView<Book> list;
 	    private Button descriptionButton;
 	    private final Files_Book file;
@@ -55,6 +55,7 @@ import javafx.collections.FXCollections;
 	        descriptionButton = new Button("Description");
 	        descriptionButton.setPrefWidth(80);
 	        descriptionButton.setPrefHeight(40);
+			descriptionButton.setId("desc");
 	       
 	        hbox.getChildren().addAll(descriptionButton);
 	        hbox.setSpacing(50.0);

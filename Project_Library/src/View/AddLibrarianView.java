@@ -7,6 +7,7 @@ import Model.Employee;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -19,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-	public class AddLibrarianView extends GridPane {
+	public class AddLibrarianView extends GridPane{
 	    private TextField nameField;
 	    private TextField surnameField;
 	    private DatePicker birthdayPicker;
@@ -35,11 +36,10 @@ import javafx.stage.Stage;
 
 		public AddLibrarianView() {
 			stage = new Stage();
-
-	        setPadding(new Insets(10));
+		    setPadding(new Insets(10));
 	        setHgap(10);
 	        setVgap(10);
-
+	        
 	        nameField = new TextField();
 	        surnameField = new TextField();
 	        birthdayPicker = new DatePicker();  
@@ -73,8 +73,10 @@ import javafx.stage.Stage;
 	        add(messageText, 0, 8, 2, 1);
 	        add(librarianTableView, 2, 0, 1, 9);
 	        setColumnSpan(librarianTableView, 2);
-		}
+	    }
 
+	       
+		
 
 
 
