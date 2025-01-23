@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="src" path="Project Library Updated/src"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/byte-buddy-1.11.13.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/byte-buddy-agent-1.11.13.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-jupiter-5.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-jupiter-api-5.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-jupiter-engine-5.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-jupiter-params-5.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-platform-commons-1.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/junit-platform-engine-1.8.1.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/mockito-core-3.12.4.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/objenesis-3.2.jar"/>
+	<classpathentry kind="lib" path="Project Library Updated/lib/opentest4j-1.2.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/frank/Downloads/mockito-all-2.0.2-beta.jar"/>
+	<classpathentry kind="output" path="Project Library Updated/out/production/Project Library Updated"/>
+</classpath>
